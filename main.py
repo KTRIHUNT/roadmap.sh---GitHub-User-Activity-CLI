@@ -77,7 +77,8 @@ else:
                 case 'GollumEvent':
                     print(', '.join(f"{page['action'].capitalize()} wiki page \'{page['title']}\'" for page in event['payload']['pages']), end=' ')
                     print(f"for repository {event['repo']['name']}", end=print_end)
-
+                case 'MemberEvent':
+                    print(f"{event['payload']['action'].capitalize()} collaborator \'{event['payload']['member']['login']}\' in {event['repo']['name']}", end=print_end)
                 case _:
                     print(f"{event['type']} in {event['repo']['name']}", end=print_end)
         else:
