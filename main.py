@@ -23,10 +23,14 @@ elif response.status_code != 200:
     print(f"Error! Github returned status code {response.status_code}: {response.reason}")
     print(f"Error message: {response.json()['message']}")
 else:
-    print("User Found! Displaying recent activity...")
-    if orgs_response.status_code == 200 and not args.external:
-        print(f"Warning: {args.username} is an organization! use --external to show activity associated with the organization.")
-    time.sleep(1)
+    if orgs_response.status_code == 200:
+        if not args.external:
+            print(f"Warning: {args.username} is an organization! use --external to show activity associated with the organization.")
+        else:
+            print("Organization Found! Displaying recent activity...")
+    else:
+        print("User Found! Displaying recent activity...")
+    time.sleep(2)
 
     file = response.json()
     for event in file:
