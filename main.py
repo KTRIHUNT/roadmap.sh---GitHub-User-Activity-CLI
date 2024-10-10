@@ -74,6 +74,10 @@ else:
                     print(f"Commented on issue \'{event['payload']['issue']['title']}\' in {event['repo']['name']}", end=print_end)
                 case 'ReleaseEvent':
                     print(f"{event['payload']['action'].capitalize()} release \'{event['payload']['release']['name']}\' in {event['repo']['name']}", end=print_end)
+                case 'GollumEvent':
+                    print(', '.join(f"{page['action'].capitalize()} wiki page \'{page['title']}\'" for page in event['payload']['pages']), end=' ')
+                    print(f"for repository {event['repo']['name']}", end=print_end)
+
                 case _:
                     print(f"{event['type']} in {event['repo']['name']}", end=print_end)
         else:
