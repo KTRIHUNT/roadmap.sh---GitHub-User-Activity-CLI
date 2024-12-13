@@ -24,4 +24,5 @@ Run commands through python and main.py, Example: `>> python main.py --list todo
 
 #### Dependencies
 
-Python 3 from https://www.python.org/downloads/
+- Python 3 from https://www.python.org/downloads/
+- _requests_ Library (install through the terminal, i.e. C:\> python -m pip install requests)
