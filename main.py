@@ -1,8 +1,6 @@
 import requests
-import json
 from argparse import ArgumentParser
 import time
-import os
 
 parser = ArgumentParser()
 parser.add_argument('username')
@@ -19,6 +17,8 @@ orgs_response = requests.get(f'https://api.github.com/orgs/{args.username}')
 
 if response.status_code == 404:
     print("Invalid User!")
+elif response.status_code == 422 and args.page:
+    print("Page not available; Maybe try a smaller page number?")
 elif response.status_code != 200:
     print(f"Error! Github returned status code {response.status_code}: {response.reason}")
     print(f"Error message: {response.json()['message']}")
